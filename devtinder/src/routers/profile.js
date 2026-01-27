@@ -63,6 +63,7 @@ profileRouter.patch("/profile/edit", Auth, async (req, res) => {
     const allowed_updates = [
       "firstName",
       "lastName",
+      "email",
       "age",
       "gender",
       "about",

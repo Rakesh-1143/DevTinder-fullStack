@@ -14,6 +14,7 @@ userRouter.get("/user/requests/pending", Auth, async (req, res) => {
     }).populate("fromUserId", [
       "firstName",
       "lastName",
+      "email",
       "photoUrl",
       "about",
       "skills",
@@ -38,7 +39,7 @@ userRouter.get("/user/request/accepted", Auth, async (req, res) => {
     const acceptedRequests = await ConnectionRequest.find({
       fromUserId: fromUserId,
       status: "accepted",
-    }).populate("toUserId", ["firstName", "lastName"]);
+    }).populate("toUserId", ["firstName", "lastName", "email"]);
 
     res.json({
       message: "Users who accepted your requests",
@@ -57,8 +58,24 @@ userRouter.get("/user/connections", Auth, async (req, res) => {
       status: "accepted",
       $or: [{ fromUserId: userId }, { toUserId: userId }],
     })
-      .populate("fromUserId", ["firstName", "lastName", "photoUrl", "about", "age", "gender"])
-      .populate("toUserId", ["firstName", "lastName", "photoUrl", "about", "age", "gender"]);
+      .populate("fromUserId", [
+        "firstName",
+        "lastName",
+        "email",
+        "photoUrl",
+        "about",
+        "age",
+        "gender",
+      ])
+      .populate("toUserId", [
+        "firstName",
+        "lastName",
+        "email",
+        "photoUrl",
+        "about",
+        "age",
+        "gender",
+      ]);
 
     res.json({
       message: "Your connections",
@@ -103,7 +120,7 @@ userRouter.get("/user/feed", Auth, async (req, res) => {
     })
       .skip(skip)
       .limit(limit)
-      .select("firstName lastName photoUrl skills about gender age");
+      .select("firstName lastName email photoUrl skills about gender age");
 
     res.json({
       message: "User feed",

@@ -54,11 +54,25 @@ requestRouter.post("/send/request/:status/:userId", Auth, async (req, res) => {
 
     // Send email if status is "interested"
     if (status === "interested") {
-      const fromUser = await User.findById(fromUserId);
-      const toUser = await User.findById(toUserId);
+      try {
+        const fromUser = await User.findById(fromUserId);
+        const toUser = await User.findById(toUserId);
 
-      if (fromUser && toUser && toUser.email) {
-        await sendInterestEmail(fromUser, toUser);
+        if (fromUser && toUser && toUser.email) {
+          console.log(
+            `[REQUEST] Attempting to send interest email to ${toUser.email}`,
+          );
+          const emailSent = await sendInterestEmail(fromUser, toUser);
+          console.log(`[REQUEST] Email sent result: ${emailSent}`);
+        } else {
+          console.warn(
+            `[REQUEST] Cannot send email - Missing user data. FromUser: ${!!fromUser}, ToUser: ${!!toUser}, Email: ${toUser?.email}`,
+          );
+        }
+      } catch (emailError) {
+        console.error(
+          `[REQUEST] Error in email sending: ${emailError.message}`,
+        );
       }
     }
 
@@ -106,11 +120,28 @@ requestRouter.post(
 
       // Send email if status is "accepted"
       if (status === "accepted") {
-        const acceptingUser = await User.findById(toUserId);
-        const interestedUser = await User.findById(fromUserId);
+        try {
+          const acceptingUser = await User.findById(toUserId);
+          const interestedUser = await User.findById(fromUserId);
 
-        if (acceptingUser && interestedUser && interestedUser.email) {
-          await sendAcceptanceEmail(acceptingUser, interestedUser);
+          if (acceptingUser && interestedUser && interestedUser.email) {
+            console.log(
+              `[REQUEST] Attempting to send acceptance email to ${interestedUser.email}`,
+            );
+            const emailSent = await sendAcceptanceEmail(
+              acceptingUser,
+              interestedUser,
+            );
+            console.log(`[REQUEST] Acceptance email sent result: ${emailSent}`);
+          } else {
+            console.warn(
+              `[REQUEST] Cannot send acceptance email - Missing user data. AcceptingUser: ${!!acceptingUser}, InterestedUser: ${!!interestedUser}, Email: ${interestedUser?.email}`,
+            );
+          }
+        } catch (emailError) {
+          console.error(
+            `[REQUEST] Error in acceptance email sending: ${emailError.message}`,
+          );
         }
       }
 

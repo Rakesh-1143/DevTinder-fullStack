@@ -28,6 +28,7 @@ function EditProfile({ user }) {
   const [user1, setUser] = useState({
     firstName: "",
     lastName: "",
+    email: "",
     photoUrl: "",
     age: "",
     gender: "",
@@ -45,6 +46,7 @@ function EditProfile({ user }) {
       setUser({
         firstName: user.firstName || "",
         lastName: user.lastName || "",
+        email: user.email || "",
         photoUrl: user.photoUrl || "",
         age: user.age || "",
         gender: user.gender || "",
@@ -223,6 +225,18 @@ function EditProfile({ user }) {
                 value={user1.lastName}
                 onChange={handleChange}
                 placeholder="Enter your last name"
+              />
+            </fieldset>
+
+            <fieldset className="fieldset">
+              <legend className="fieldset-legend text-xl">Email</legend>
+              <input
+                type="email"
+                name="email"
+                className="input"
+                value={user1.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
               />
             </fieldset>
 

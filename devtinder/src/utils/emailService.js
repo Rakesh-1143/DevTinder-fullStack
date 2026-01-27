@@ -9,9 +9,29 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Verify transporter connection on startup
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("Email transporter error:", error);
+  } else {
+    console.log("Email transporter ready! Emails can be sent.");
+  }
+});
+
 // Function to send interest email
 const sendInterestEmail = async (fromUser, toUser) => {
   try {
+    console.log(
+      `[EMAIL] Sending interest email from ${fromUser.firstName} to ${toUser.email}`,
+    );
+
+    if (!toUser.email) {
+      console.error(
+        `[EMAIL] Error: Recipient email not found for user ${toUser._id}`,
+      );
+      return false;
+    }
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: toUser.email,
@@ -20,10 +40,10 @@ const sendInterestEmail = async (fromUser, toUser) => {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #ff6b6b;">Great News! 🎉</h2>
           <p>Hi ${toUser.firstName},</p>
-          <p><strong>${fromUser.firstName} ${fromUser.lastName}</strong> is interested in connecting with you!</p>
+          <p><strong>${fromUser.firstName} ${fromUser.lastName || ""}</strong> is interested in connecting with you!</p>
           
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3>${fromUser.firstName} ${fromUser.lastName}</h3>
+            <h3>${fromUser.firstName} ${fromUser.lastName || ""}</h3>
             <p><strong>Age:</strong> ${fromUser.age || "Not specified"}</p>
             <p><strong>Gender:</strong> ${fromUser.gender || "Not specified"}</p>
             <p><strong>About:</strong> ${fromUser.about || "No description"}</p>
@@ -47,11 +67,15 @@ const sendInterestEmail = async (fromUser, toUser) => {
       `,
     };
 
-    await transporter.sendMail(mailOptions);
-    console.log(`Email sent successfully to ${toUser.email}`);
+    const result = await transporter.sendMail(mailOptions);
+    console.log(
+      `[EMAIL] ✅ Interest email sent successfully to ${toUser.email}`,
+    );
+    console.log(`[EMAIL] Message ID: ${result.messageId}`);
     return true;
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("[EMAIL] ❌ Error sending interest email:", error.message);
+    console.error("[EMAIL] Full error:", error);
     return false;
   }
 };
@@ -59,6 +83,17 @@ const sendInterestEmail = async (fromUser, toUser) => {
 // Function to send acceptance email
 const sendAcceptanceEmail = async (fromUser, toUser) => {
   try {
+    console.log(
+      `[EMAIL] Sending acceptance email from ${fromUser.firstName} to ${toUser.email}`,
+    );
+
+    if (!toUser.email) {
+      console.error(
+        `[EMAIL] Error: Recipient email not found for user ${toUser._id}`,
+      );
+      return false;
+    }
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: toUser.email,
@@ -67,7 +102,7 @@ const sendAcceptanceEmail = async (fromUser, toUser) => {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #51cf66;">Awesome! It's a Match! 🎊</h2>
           <p>Hi ${toUser.firstName},</p>
-          <p><strong>${fromUser.firstName} ${fromUser.lastName}</strong> has accepted your interest!</p>
+          <p><strong>${fromUser.firstName} ${fromUser.lastName || ""}</strong> has accepted your interest!</p>
           <p>You two are now connected. Start chatting and get to know each other!</p>
           
           <p style="margin-top: 20px;">
@@ -83,11 +118,15 @@ const sendAcceptanceEmail = async (fromUser, toUser) => {
       `,
     };
 
-    await transporter.sendMail(mailOptions);
-    console.log(`Acceptance email sent successfully to ${toUser.email}`);
+    const result = await transporter.sendMail(mailOptions);
+    console.log(
+      `[EMAIL] ✅ Acceptance email sent successfully to ${toUser.email}`,
+    );
+    console.log(`[EMAIL] Message ID: ${result.messageId}`);
     return true;
   } catch (error) {
-    console.error("Error sending acceptance email:", error);
+    console.error("[EMAIL] ❌ Error sending acceptance email:", error.message);
+    console.error("[EMAIL] Full error:", error);
     return false;
   }
 };
