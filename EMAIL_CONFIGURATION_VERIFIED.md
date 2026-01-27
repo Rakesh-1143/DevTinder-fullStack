@@ -5,21 +5,21 @@
 ### Backend Configuration (devtinder/.env)
 
 ```
-✅ EMAIL_USER=rakeshreddy261002@gmail.com
-✅ EMAIL_PASSWORD=Rakesh@1143
+✅ EMAIL_USER=your-email@gmail.com (configured)
+✅ EMAIL_PASSWORD=your-app-password (configured)
 ✅ FRONTEND_URL=http://localhost:5173
-✅ MONGODB_URI=mongodb+srv://Rakesh:Rakesh%401143@cluster0.4ei68pc.mongodb.net/devtinder
+✅ MONGODB_URI=your-mongodb-atlas-uri (configured)
 ✅ PORT=3000
-✅ JWT_SECRET=Rakesh@1143
+✅ JWT_SECRET=your-jwt-secret (configured)
 ```
 
 ### Frontend Configuration (devtinder-web/.env.local)
 
 ```
-✅ VITE_EMAILJS_PUBLIC_KEY=nJYQx9jYxemZsOtX9
-✅ VITE_EMAILJS_SERVICE_ID=service_9wlbjpa
-✅ VITE_EMAILJS_INTEREST_TEMPLATE_ID=template_fg2ty3e
-✅ VITE_EMAILJS_ACCEPTANCE_TEMPLATE_ID=template_z1j4rxr
+✅ VITE_EMAILJS_PUBLIC_KEY=your-emailjs-public-key (configured)
+✅ VITE_EMAILJS_SERVICE_ID=your-emailjs-service-id (configured)
+✅ VITE_EMAILJS_INTEREST_TEMPLATE_ID=your-interest-template-id (configured)
+✅ VITE_EMAILJS_ACCEPTANCE_TEMPLATE_ID=your-acceptance-template-id (configured)
 ```
 
 ---
@@ -103,7 +103,6 @@ Frontend should start on http://localhost:5173 ✅
 - Skills list
 - Direct link to DevTinder
 - Professional HTML template
-- From: rakeshreddy261002@gmail.com
 
 ### Acceptance Email Includes:
 
@@ -117,14 +116,14 @@ Frontend should start on http://localhost:5173 ✅
 ## ⚠️ Important Notes
 
 1. **Gmail App Password**
-   - You're using: `Rakesh@1143`
+   - Configured in backend .env
    - This is safer than regular Gmail password
    - Keep it private ✅
 
 2. **EmailJS Credentials**
-   - Service ID: service_9wlbjpa ✅
-   - Public Key: nJYQx9jYxemZsOtX9 ✅
-   - Template IDs are safe to expose (public-facing)
+   - Service ID configured in .env.local ✅
+   - Public Key configured in .env.local ✅
+   - Template IDs configured in .env.local ✅
 
 3. **.gitignore Protection**
    - .env files are ignored (not pushed to GitHub) ✅
@@ -137,8 +136,8 @@ Frontend should start on http://localhost:5173 ✅
 | Issue                        | Solution                                                    |
 | ---------------------------- | ----------------------------------------------------------- |
 | Emails not arriving          | Check Gmail inbox spam folder                               |
-| "Invalid from address" error | Verify EMAIL_USER is exactly: `rakeshreddy261002@gmail.com` |
-| 401 authentication error     | Verify EMAIL_PASSWORD is: `Rakesh@1143`                     |
+| "Invalid from address" error | Verify EMAIL_USER is configured in .env |
+| 401 authentication error | Verify EMAIL_PASSWORD is configured in .env |
 | "Less secure apps" warning   | Gmail App Passwords bypass this automatically ✅            |
 | CORS errors                  | Frontend/Backend CORS is configured for localhost:5173      |
 
@@ -186,10 +185,9 @@ User B receives email in inbox
 
 Your email system is now fully configured and ready to send notifications!
 
-**All credentials are set up correctly:**
-
-- ✅ Gmail: rakeshreddy261002@gmail.com
-- ✅ EmailJS Service: service_9wlbjpa
-- ✅ Templates: template_fg2ty3e & template_z1j4rxr
+**All credentials are configured securely:**
+- ✅ Gmail credentials in backend .env
+- ✅ EmailJS credentials in frontend .env.local
+- ✅ Database URI in backend .env
 
 Start the servers and test! 🚀
