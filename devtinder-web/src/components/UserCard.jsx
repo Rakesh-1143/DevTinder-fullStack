@@ -64,7 +64,8 @@ function UserCard({ users, onRemoveCard }) {
             alt={`${firstName} ${lastName}`}
             className="h-64 w-full object-cover"
             onError={(e) => {
-              e.target.src = "https://via.placeholder.com/400x400?text=No+Photo";
+              e.target.src =
+                "https://via.placeholder.com/400x400?text=No+Photo";
             }}
           />
         </figure>
