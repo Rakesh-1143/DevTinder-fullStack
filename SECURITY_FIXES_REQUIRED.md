@@ -9,6 +9,7 @@ Your credentials were exposed in public commit history on GitHub. Follow these s
 ## 🚨 **IMMEDIATE ACTIONS (Do This Now)**
 
 ### 1. **ROTATE Your MongoDB Credentials**
+
 **Status: ⚠️ CRITICAL - Your database password may be compromised**
 
 Go to: [MongoDB Atlas Dashboard](https://www.mongodb.com/cloud/atlas)
@@ -23,11 +24,13 @@ Go to: [MongoDB Atlas Dashboard](https://www.mongodb.com/cloud/atlas)
 8. Update backend `.env` with new MongoDB URI
 
 **New URI Format:**
+
 ```
 MONGODB_URI=mongodb+srv://Rakesh:NEW_PASSWORD@cluster0.4ei68pc.mongodb.net/devtinder
 ```
 
 ### 2. **ROTATE Your Gmail App Password**
+
 **Status: ⚠️ CRITICAL - Your email account may be compromised**
 
 Go to: [Google Account Security](https://myaccount.google.com/apppasswords)
@@ -37,11 +40,13 @@ Go to: [Google Account Security](https://myaccount.google.com/apppasswords)
 3. Click **Generate** new app password
 4. Copy the new password
 5. Update your local backend `.env` file:
+
 ```
 EMAIL_PASSWORD=NEW_APP_PASSWORD
 ```
 
 ### 3. **ROTATE Your JWT Secret**
+
 **Status: ⚠️ CRITICAL - Authentication tokens may be compromised**
 
 1. Generate a new secure JWT secret:
@@ -49,11 +54,13 @@ EMAIL_PASSWORD=NEW_APP_PASSWORD
    - Or create random string of 32+ characters
 
 2. Update your local backend `.env`:
+
 ```
 JWT_SECRET=YOUR_NEW_SECRET
 ```
 
 ### 4. **VERIFY EmailJS Credentials**
+
 **Status: ℹ️ LOW RISK (public credentials, but verify)**
 
 - EmailJS public keys are meant to be public
@@ -61,6 +68,7 @@ JWT_SECRET=YOUR_NEW_SECRET
 - But check your account for suspicious activity
 
 Go to: [EmailJS Dashboard](https://dashboard.emailjs.com/)
+
 - Review your recent activity
 - Check sent emails history
 - Monitor usage
@@ -149,5 +157,5 @@ If credentials were already compromised:
 
 ---
 
-**Important:** Until you rotate the credentials, assume they are compromised. 
+**Important:** Until you rotate the credentials, assume they are compromised.
 Do this ASAP!

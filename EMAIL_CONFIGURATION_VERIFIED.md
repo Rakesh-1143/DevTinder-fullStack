@@ -133,13 +133,13 @@ Frontend should start on http://localhost:5173 ✅
 
 ## 🔧 Troubleshooting
 
-| Issue                        | Solution                                                    |
-| ---------------------------- | ----------------------------------------------------------- |
-| Emails not arriving          | Check Gmail inbox spam folder                               |
-| "Invalid from address" error | Verify EMAIL_USER is configured in .env |
-| 401 authentication error | Verify EMAIL_PASSWORD is configured in .env |
-| "Less secure apps" warning   | Gmail App Passwords bypass this automatically ✅            |
-| CORS errors                  | Frontend/Backend CORS is configured for localhost:5173      |
+| Issue                        | Solution                                               |
+| ---------------------------- | ------------------------------------------------------ |
+| Emails not arriving          | Check Gmail inbox spam folder                          |
+| "Invalid from address" error | Verify EMAIL_USER is configured in .env                |
+| 401 authentication error     | Verify EMAIL_PASSWORD is configured in .env            |
+| "Less secure apps" warning   | Gmail App Passwords bypass this automatically ✅       |
+| CORS errors                  | Frontend/Backend CORS is configured for localhost:5173 |
 
 ---
 
@@ -186,6 +186,7 @@ User B receives email in inbox
 Your email system is now fully configured and ready to send notifications!
 
 **All credentials are configured securely:**
+
 - ✅ Gmail credentials in backend .env
 - ✅ EmailJS credentials in frontend .env.local
 - ✅ Database URI in backend .env

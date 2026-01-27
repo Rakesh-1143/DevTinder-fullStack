@@ -7,7 +7,10 @@ import BASE_URL from "./constant";
  * @returns {string} - Full URL that can be used in img src
  */
 export const getImageUrl = (photoUrl) => {
-  if (!photoUrl) return "https://via.placeholder.com/300";
+  // If no photo URL, return placeholder
+  if (!photoUrl) {
+    return "https://via.placeholder.com/400x400?text=No+Photo";
+  }
 
   // If it's already a full URL (http/https), return as is
   if (photoUrl.startsWith("http")) {
@@ -16,7 +19,12 @@ export const getImageUrl = (photoUrl) => {
 
   // If it's a local path (/uploads/...), prepend BASE_URL
   if (photoUrl.startsWith("/uploads")) {
-    return BASE_URL + photoUrl;
+    return `${BASE_URL}${photoUrl}`;
+  }
+
+  // If it's just a filename, assume it's in /uploads/
+  if (!photoUrl.startsWith("/")) {
+    return `${BASE_URL}/uploads/${photoUrl}`;
   }
 
   // Default fallback

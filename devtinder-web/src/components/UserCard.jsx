@@ -58,11 +58,14 @@ function UserCard({ users, onRemoveCard }) {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="card bg-base-100 w-96 shadow-lg">
-        <figure>
+        <figure className="bg-gray-200 h-64 w-full flex items-center justify-center">
           <img
             src={getImageUrl(photoUrl)}
             alt={`${firstName} ${lastName}`}
             className="h-64 w-full object-cover"
+            onError={(e) => {
+              e.target.src = "https://via.placeholder.com/400x400?text=No+Photo";
+            }}
           />
         </figure>
         <div className="card-body">
