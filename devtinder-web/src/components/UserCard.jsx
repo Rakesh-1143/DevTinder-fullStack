@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import BASE_URL from "../utils/constant";
 import { getImageUrl } from "../utils/imageHelper";
+import { sendInterestNotification } from "../utils/emailHelper";
 
 function UserCard({ users, onRemoveCard }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +26,16 @@ function UserCard({ users, onRemoveCard }) {
       );
 
       console.log("Request sent successfully:", response.data);
+
+      // Send email notification on frontend if interested (optional double send)
+      if (status === "interested") {
+        const currentUser = localStorage.getItem("currentUser");
+        if (currentUser) {
+          const user = JSON.parse(currentUser);
+          // Optional: Can send additional email from frontend
+          // await sendInterestNotification(user.firstName, users.email);
+        }
+      }
 
       // Remove this user from feed on success
       if (onRemoveCard) {
