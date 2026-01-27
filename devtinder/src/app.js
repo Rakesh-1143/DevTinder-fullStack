@@ -48,8 +48,6 @@ connectDB()
     console.log("database connected successfullly");
     app.listen(process.env.PORT || 5000, () => console.log("server connected"));
   })
-
-  .catch((err) => {  cd devtinder
-  npm install dotenv
+  .catch((err) => {
     console.error("Database connection error:", err.message);
   });

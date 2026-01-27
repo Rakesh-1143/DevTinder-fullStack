@@ -3,6 +3,7 @@
 ## ✅ Configuration Files Updated
 
 ### Backend Configuration (devtinder/.env)
+
 ```
 ✅ EMAIL_USER=rakeshreddy261002@gmail.com
 ✅ EMAIL_PASSWORD=Rakesh@1143
@@ -13,6 +14,7 @@
 ```
 
 ### Frontend Configuration (devtinder-web/.env.local)
+
 ```
 ✅ VITE_EMAILJS_PUBLIC_KEY=nJYQx9jYxemZsOtX9
 ✅ VITE_EMAILJS_SERVICE_ID=service_9wlbjpa
@@ -25,6 +27,7 @@
 ## ✅ Code Updates Made
 
 ### Backend Files
+
 1. **devtinder/src/utils/emailService.js**
    - ✅ Nodemailer configured with Gmail
    - ✅ Two email templates (interest + acceptance)
@@ -36,6 +39,7 @@
    - ✅ Fetches user data and sends emails asynchronously
 
 ### Frontend Files
+
 1. **devtinder-web/src/utils/emailHelper.js**
    - ✅ EmailJS initialization function
    - ✅ Optional frontend email sending (backup)
@@ -53,20 +57,25 @@
 ## 🚀 How to Test
 
 ### 1. Start Backend Server
+
 ```bash
 cd devtinder
 npm run dev
 ```
+
 Server should start on PORT 3000 ✅
 
 ### 2. Start Frontend Server
+
 ```bash
 cd devtinder-web
 npm run dev
 ```
+
 Frontend should start on http://localhost:5173 ✅
 
 ### 3. Test Email Functionality
+
 1. **Login** with a test account
 2. **Navigate to Feed**
 3. **Click "Interested"** on any user profile
@@ -88,6 +97,7 @@ Frontend should start on http://localhost:5173 ✅
 ## 📧 Email Details
 
 ### Interest Email Includes:
+
 - Interested user's name
 - Age, gender, and about section
 - Skills list
@@ -96,6 +106,7 @@ Frontend should start on http://localhost:5173 ✅
 - From: rakeshreddy261002@gmail.com
 
 ### Acceptance Email Includes:
+
 - Accepting user's name
 - Match confirmation message
 - Link to connections page
@@ -123,13 +134,13 @@ Frontend should start on http://localhost:5173 ✅
 
 ## 🔧 Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Emails not arriving | Check Gmail inbox spam folder |
+| Issue                        | Solution                                                    |
+| ---------------------------- | ----------------------------------------------------------- |
+| Emails not arriving          | Check Gmail inbox spam folder                               |
 | "Invalid from address" error | Verify EMAIL_USER is exactly: `rakeshreddy261002@gmail.com` |
-| 401 authentication error | Verify EMAIL_PASSWORD is: `Rakesh@1143` |
-| "Less secure apps" warning | Gmail App Passwords bypass this automatically ✅ |
-| CORS errors | Frontend/Backend CORS is configured for localhost:5173 |
+| 401 authentication error     | Verify EMAIL_PASSWORD is: `Rakesh@1143`                     |
+| "Less secure apps" warning   | Gmail App Passwords bypass this automatically ✅            |
+| CORS errors                  | Frontend/Backend CORS is configured for localhost:5173      |
 
 ---
 
@@ -176,6 +187,7 @@ User B receives email in inbox
 Your email system is now fully configured and ready to send notifications!
 
 **All credentials are set up correctly:**
+
 - ✅ Gmail: rakeshreddy261002@gmail.com
 - ✅ EmailJS Service: service_9wlbjpa
 - ✅ Templates: template_fg2ty3e & template_z1j4rxr
