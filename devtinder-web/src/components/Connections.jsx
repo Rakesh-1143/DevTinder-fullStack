@@ -24,8 +24,10 @@ function Connections() {
   };
 
   useEffect(() => {
-    fetchConnections();
-  }, []);
+    if (!connections) {
+      fetchConnections();
+    }
+  }, [connections]);
 
   if (!connections) return <h1>Loading...</h1>;
 

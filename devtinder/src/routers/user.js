@@ -57,8 +57,8 @@ userRouter.get("/user/connections", Auth, async (req, res) => {
       status: "accepted",
       $or: [{ fromUserId: userId }, { toUserId: userId }],
     })
-      .populate("fromUserId", ["firstName", "lastName"])
-      .populate("toUserId", ["firstName", "lastName"]);
+      .populate("fromUserId", ["firstName", "lastName", "photoUrl", "about", "age", "gender"])
+      .populate("toUserId", ["firstName", "lastName", "photoUrl", "about", "age", "gender"]);
 
     res.json({
       message: "Your connections",
