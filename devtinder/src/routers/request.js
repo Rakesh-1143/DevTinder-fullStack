@@ -3,7 +3,10 @@ const ConnectionRequest = require("../models/connectionRequest");
 const Auth = require("../middleware/Auth");
 const requestRouter = express.Router();
 const User = require("../models/user");
-const { sendInterestEmail, sendAcceptanceEmail } = require("../utils/emailService");
+const {
+  sendInterestEmail,
+  sendAcceptanceEmail,
+} = require("../utils/emailService");
 
 requestRouter.post("/send/request/:status/:userId", Auth, async (req, res) => {
   try {
@@ -53,7 +56,7 @@ requestRouter.post("/send/request/:status/:userId", Auth, async (req, res) => {
     if (status === "interested") {
       const fromUser = await User.findById(fromUserId);
       const toUser = await User.findById(toUserId);
-      
+
       if (fromUser && toUser && toUser.email) {
         await sendInterestEmail(fromUser, toUser);
       }
@@ -105,7 +108,7 @@ requestRouter.post(
       if (status === "accepted") {
         const acceptingUser = await User.findById(toUserId);
         const interestedUser = await User.findById(fromUserId);
-        
+
         if (acceptingUser && interestedUser && interestedUser.email) {
           await sendAcceptanceEmail(acceptingUser, interestedUser);
         }
