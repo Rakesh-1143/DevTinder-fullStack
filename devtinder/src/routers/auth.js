@@ -38,14 +38,17 @@ authRouter.post("/signup", async (req, res) => {
       photoUrl,
       skills,
     });
+    res.cookie("token", "", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    });
     res.status(201).json({
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
       message: "User created successfully",
-      user: {
-        _id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-      },
     });
   } catch (err) {
     // Handle specific validation errors

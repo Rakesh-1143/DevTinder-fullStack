@@ -76,7 +76,8 @@ const allowedOrigins = [
   "http://127.0.0.1:5173",
   "http://127.0.0.1:5174",
   "http://127.0.0.1:5175",
-  process.env.CLIENT_URL, // Render frontend URL
+  process.env.FRONTEND_URL, // Render frontend URL
+  process.env.CLIENT_URL, // Alternate name support
 ].filter(Boolean);
 
 app.use(
