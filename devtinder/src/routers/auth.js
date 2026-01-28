@@ -94,11 +94,21 @@ authRouter.post("/login", async (req, res) => {
     });
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false, // Set to true in production with HTTPS
-      sameSite: "Lax",
+      secure: process.env.NODE_ENV === "production", // true in production with HTTPS
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     });
 
-    res.status(200).json(user);
+    res.status(200).json({
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      age: user.age,
+      gender: user.gender,
+      about: user.about,
+      photoUrl: user.photoUrl,
+      skills: user.skills,
+    });
   } catch (err) {
     res
       .status(500)
@@ -110,6 +120,8 @@ authRouter.post("/logout", (req, res) => {
   res.cookie("token", "", {
     expires: new Date(0),
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
   });
   res.json({
     message: "Logged out successfully",
