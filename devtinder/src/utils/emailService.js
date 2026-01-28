@@ -144,11 +144,14 @@ if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD,
     },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
+    connectionTimeout: 5000,
+    greetingTimeout: 5000,
+    socketTimeout: 5000,
+    pool: true,
+    maxConnections: 1,
   });
 
+  // Don't verify connection on startup (causes timeout on Render)
   console.log("📧 Email transporter initialized");
 } else {
   console.warn("📭 Email disabled: missing credentials");
