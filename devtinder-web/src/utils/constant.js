@@ -5,7 +5,7 @@
 
 const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://devtinder-backend-ifde.onrender.com"
+    ? "https://devtinder-backend-d3yp.onrender.com"
     : "http://localhost:3000";
 
 export default BASE_URL;
